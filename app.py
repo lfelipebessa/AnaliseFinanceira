@@ -195,13 +195,13 @@ with col1:
             faturamento_total_milhoes, 2)
         lucro_total_milhoes_formatado = round(lucro_total_milhoes, 2)
 
-        # Exibir o custo, faturamento e lucro em milhões
-        st.metric(label="Custo Total (Milhões)", value=f"${
-                  custo_total_milhoes_formatado}")
-        st.metric(label="Faturamento Total (Milhões)", value=f"${
-                  faturamento_total_milhoes_formatado}")
-        st.metric(label="Lucro Total (Milhões)", value=f"${
-                  lucro_total_milhoes_formatado}")
+     # Exibir o custo, faturamento e lucro em milhões
+    st.metric(label="Custo Total (Milhões)",
+              value=f"${custo_total_milhoes_formatado}")
+    st.metric(label="Faturamento Total (Milhões)",
+              value=f"${faturamento_total_milhoes_formatado}")
+    st.metric(label="Lucro Total (Milhões)",
+              value=f"${lucro_total_milhoes_formatado}")
 
 
 with col2:
