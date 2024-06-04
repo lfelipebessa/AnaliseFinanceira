@@ -21,10 +21,10 @@ https://dashboardluizfbessa.streamlit.app
 O conjunto de dados utilizado neste projeto contém informações de vendas, incluindo detalhes sobre o tipo de loja, data da venda, continente, marca, quantidade vendida, preço unitário, custo unitário, entre outros.
 
 # Tecnologias Utilizadas
-Python
-Streamlit
-Plotly
-Pandas
+- Python
+- Streamlit
+- Plotly
+- Pandas
 
 # Autor
 ## Luiz Felipe Bessa
