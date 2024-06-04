@@ -160,7 +160,7 @@ if 'Todas' not in fMarca:
     all_sales = all_sales[all_sales['Marca'].isin(fMarca)]
 
 
-col1, col2, col3 = st.columns([1, 3, 3])
+col1, col2, col3 = st.columns([1, 2, 2])
 
 with col1:
     with st.container():
