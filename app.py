@@ -196,12 +196,12 @@ with col1:
         lucro_total_milhoes_formatado = round(lucro_total_milhoes, 2)
 
      # Exibir o custo, faturamento e lucro em milhões
-    st.metric(label="Custo Total (Milhões)",
-              value=f"${custo_total_milhoes_formatado}")
-    st.metric(label="Faturamento Total (Milhões)",
-              value=f"${faturamento_total_milhoes_formatado}")
-    st.metric(label="Lucro Total (Milhões)",
-              value=f"${lucro_total_milhoes_formatado}")
+    st.metric(label="Custo Total",
+              value=f"${custo_total_milhoes_formatado} M")
+    st.metric(label="Faturamento Total",
+              value=f"${faturamento_total_milhoes_formatado} M")
+    st.metric(label="Lucro Total",
+              value=f"${lucro_total_milhoes_formatado} M")
 
 
 with col2:
@@ -231,7 +231,10 @@ with col2:
                       title='Faturamento Total por Mês/Ano',
                       labels={'Data': 'Data',
                               'Faturamento': 'Faturamento Total'},
-                      markers=True)
+                      markers=True,)
+
+        # Ajustar a cor da linha
+        fig.update_traces(line_color="#B95BF5")
 
         # Exibir o gráfico
         st.plotly_chart(fig)
@@ -265,6 +268,9 @@ with col3:
                       labels={'Data': 'Data', 'Lucro': 'Lucro Total'},
                       markers=True)
 
+        # Ajustar a cor da linha
+        fig.update_traces(line_color="#B95BF5")
+
         # Exibir o gráfico
         st.plotly_chart(fig)
 
@@ -278,9 +284,13 @@ with col4:
     vendas_por_genero['Genero'] = vendas_por_genero['Genero'].map(
         {'F': 'Feminino', 'M': 'Masculino'})
 
+    # Paleta de cores personalizada
+    cores_personalizadas = ['#B95BF5', '#00CC96', '#F55E5B']
+
     # Criar o gráfico de barras com Plotly Express
     fig = px.pie(vendas_por_genero, values='Qtd. Vendida', names='Genero', hole=0.4,
-                 title='Quantidade Total de Produtos Vendidos por Gênero')
+                 title='Quantidade Total de Produtos Vendidos por Gênero',
+                 color_discrete_sequence=cores_personalizadas)
 
     # Exibir o gráfico
     st.plotly_chart(fig)
@@ -296,7 +306,8 @@ with col4:
 
         # Personalizar as informações mostradas ao passar o mouse sobre o gráfico
         fig.update_traces(
-            hovertemplate='Idade=%{x}<br>Quantidade Vendida=%{y}')
+            hovertemplate='Idade=%{x}<br>Quantidade Vendida=%{y}',
+            marker_color="#B95BF5")
 
         # Exibir o gráfico
         st.plotly_chart(fig)
@@ -313,6 +324,10 @@ lucro_por_categoria = lucro_por_categoria.sort_values(
 lucro_por_categoria['Lucro (Milhões)'] = lucro_por_categoria['Lucro'] / 1e6
 lucro_por_categoria = round(lucro_por_categoria, 2)
 
+# Paleta de cores personalizada
+cores_personalizadas2 = ['#B95BF5', '#00CC96', '#F55E5B',
+                         '#5BF5A0', '#F5BE5B', '#8E70A0', '#66756D', '#757066', '#DCF55B', '#9B70B5', '#5BF2F5']
+
 # Criar o gráfico de barras com Plotly Express
 fig = px.bar(lucro_por_categoria, x='Categoria', y='Lucro',
              title='Lucro Total por Categoria de Produto',
@@ -320,7 +335,7 @@ fig = px.bar(lucro_por_categoria, x='Categoria', y='Lucro',
                      'Lucro': 'Lucro Total'},
              color='Categoria',
              text='Lucro (Milhões)',
-             color_discrete_sequence=px.colors.qualitative.Light24
+             color_discrete_sequence=cores_personalizadas2
              )
 
 # Personalizar o layout do gráfico
@@ -347,7 +362,8 @@ fig = px.bar(clientes_por_pais, y='País', x='Quantidade de Clientes',
                      'Quantidade de Clientes': 'Quantidade de Clientes'},
              orientation='h',
              color='País',  # Usar a coluna 'País' para definir as cores
-             color_discrete_sequence=px.colors.qualitative.Light24)  # Definir a paleta de cores
+             color_discrete_sequence=cores_personalizadas2
+             )
 
 # Exibir o gráfico
 st.plotly_chart(fig)
